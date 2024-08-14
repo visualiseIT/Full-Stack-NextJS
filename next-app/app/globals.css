@@ -44,5 +44,8 @@ body {
 }
 
 .card {
-  @apply max-w-sm rounded overflow-hidden shadow-lg
+  @apply max-w-sm rounded overflow-hidden shadow-lg p-4 h-40
+}
+.card:hover {
+  @apply bg-amber-200
 }
