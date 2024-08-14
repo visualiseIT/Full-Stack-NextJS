@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type {Metadata} from "next";
+import {Inter} from "next/font/google";
 import "./globals.css";
+import {ConvexClerkProvider} from "@/components/providers/ConvexClerkProvider";
+import {Navbar} from "@/app/navbar";
+// import {SignInButton, UserButton} from "@clerk/clerk-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <body className={inter.className}>
+    <ConvexClerkProvider>
+        {/*<SignedOut>
+              <SignInButton/>
+          </SignedOut>
+          <SignedIn>
+              <UserButton/>
+          </SignedIn>*/}
+
+        <Navbar/>
+        {children}
+    </ConvexClerkProvider>
+    </body>
     </html>
   );
 }

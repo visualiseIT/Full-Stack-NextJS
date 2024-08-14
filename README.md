@@ -31,3 +31,14 @@ I chose the following default options:
 
 >npx convex dev
 
+## setting up Convex Auth with Clerk
+
+create convex/auth.config.ts
+
+deploy by running: npx convex dev
+
+> npm install @clerk/nextjs
+
+create file: [ConvexClerkProvider.tsx](next-app%2Fcomponents%2Fproviders%2FConvexClerkProvider.tsx)
+
+add NavBar with SignIn buttons etc.,
