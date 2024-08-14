@@ -6,7 +6,12 @@ to run the app in dev mode:
 
 > npm run dev
 
+in another terminal:
+> npx convex dev
+
 ## How I built this App:
+
+### Create NextJS App
 
 > npx create-next-app next-app
 
@@ -25,13 +30,13 @@ I chose the following default options:
 
 ✔ Would you like to customize the default import alias (@/*)? … No 
 
-## setting up Convex
+### Setup Convex
 
 >npm install convex
 
 >npx convex dev
 
-## setting up Convex Auth with Clerk
+### Setup Clerk with Convex
 
 create convex/auth.config.ts
 
@@ -42,3 +47,8 @@ deploy by running: npx convex dev
 create file: [ConvexClerkProvider.tsx](next-app%2Fcomponents%2Fproviders%2FConvexClerkProvider.tsx)
 
 add NavBar with SignIn buttons etc.,
+
+
+---
+inspiration:
+https://www.youtube.com/watch?v=4ojKx770_0Q
