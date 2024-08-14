@@ -25,3 +25,9 @@ I chose the following default options:
 
 ✔ Would you like to customize the default import alias (@/*)? … No 
 
+## setting up Convex
+
+>npm install convex
+
+>npx convex dev
+
