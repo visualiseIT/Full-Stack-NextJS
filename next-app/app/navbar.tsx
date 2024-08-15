@@ -13,6 +13,8 @@ export function Navbar() {
             <UserButton/>
             &nbsp;
             &nbsp;
+            <Link href={"/dashboard"} className={"btn"}>Dashboard</Link>
+            <Link href={"/postit-board"} className={"btn"}>Post-it Notes</Link>
             <Link href={"/"} className={"btn"}>Quick Notes</Link>
             <Link href={"/chat"} className={"btn"}>Chat</Link>
         </Authenticated>
