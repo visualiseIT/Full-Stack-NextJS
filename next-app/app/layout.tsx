@@ -21,13 +21,6 @@ export default function RootLayout({
     <html lang="en">
     <body className={inter.className}>
     <ConvexClerkProvider>
-        {/*<SignedOut>
-              <SignInButton/>
-          </SignedOut>
-          <SignedIn>
-              <UserButton/>
-          </SignedIn>*/}
-
         <Navbar/>
         {children}
     </ConvexClerkProvider>
