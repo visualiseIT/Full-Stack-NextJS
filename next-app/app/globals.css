@@ -45,9 +45,28 @@ body {
 }
 
 .card {
-  @apply max-w-sm rounded overflow-hidden shadow-lg p-4 h-40
+
+  /*position: absolute;*/
+
+  transition-property: transform, left, right;
+  transition-duration: 300ms, 500ms, 500ms;
+  transform: scale(1);
+
+  /*left:0;*/
+  /*right:0;*/
+
+  @apply max-w-sm rounded overflow-hidden shadow-lg p-4 h-40 bg-amber-100
+
 }
 .card:hover {
+
+  transform: scale(1.1) !important;
+  z-index: 1000;
+
+  @apply bg-amber-300
+
+}
+.card.selected{
   @apply bg-amber-200
 }
 @layer base {
