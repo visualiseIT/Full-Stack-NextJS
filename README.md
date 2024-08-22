@@ -1,6 +1,12 @@
-# Full-Stack-NextJS
+# Full Stack NextJS Ai Notes App
 
-to run the app in dev mode:
+![Screenshot.png](Screenshot.png)
+
+Built with `create-next-app`
+
+using `Typescript` `Tailwind` `Convex` `Clerk`
+
+To run the app in dev mode:
 
 > cd next-app
 
@@ -9,26 +15,12 @@ to run the app in dev mode:
 in another terminal:
 > npx convex dev
 
-## How I built this App:
+## Build Notes:
 
 ### Create NextJS App
 
 > npx create-next-app next-app
 
-I chose the following default options:
-
-
-✔ Would you like to use TypeScript? … Yes
-
-✔ Would you like to use ESLint? … Yes
-
-✔ Would you like to use Tailwind CSS? … Yes
-
-✔ Would you like to use `src/` directory? … No
-
-✔ Would you like to use App Router? (recommended) … Yes
-
-✔ Would you like to customize the default import alias (@/*)? … No 
 
 ### Setup Convex
 
