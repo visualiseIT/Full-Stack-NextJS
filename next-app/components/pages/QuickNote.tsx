@@ -27,7 +27,7 @@ function QuickNote(props: any) {
 
     const style = {
         transform: `scale(${scale})`,
-        left: `-${left}px`
+        // left: `-${left}px`
     };
     return (
         <div style={style} className={`card ${selectedNodes?.includes(note._id) ? "selected" : ""}`} key={note._id}
