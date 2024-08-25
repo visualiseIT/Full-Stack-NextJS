@@ -5,31 +5,20 @@ function QuickNote(props: any) {
 
     const {note, selectedNodes, onQNoteClick} = props;
 
-    const [scale, setScale] = useState(1);
-    // const [left, setLeft] = useState(0);
+    const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
-        setScale(0.1);
-        // setLeft(100);
-        setTimeout(
-            () => {
-                setScale(1.1);
-                // setLeft(100);
-                setTimeout(
-                    () => {
-                        setScale(1);
-                    },
-                    300 /* 100ms == 0.1s */
-                );
-            },
-            150 /* 100ms == 0.1s */
-        );
+        // Delay the animation start slightly to ensure the initial state is rendered
+        const timer = setTimeout(() => setAnimate(true), 50);
+        return () => clearTimeout(timer);
     }, []);
 
     const style = {
-        transform: `scale(${scale})`,
-        // left: `-${left}px`
+        transform: animate ? 'translate(0, 0) rotateY(0deg)' : `translate(${Math.random() * 100 - 50}vw, ${Math.random() * 100 - 50}vh) rotateY(${Math.random() * 720 - 360}deg)`,
+        opacity: animate ? 1 : 0,
+        transition: 'transform 1s ease-out, opacity 0.5s ease-out',
     };
+
     return (
         <div
             style={style}
