@@ -15,6 +15,7 @@ export function Navbar() {
             &nbsp;
             <Link href={"/dashboard"} className={"btn"}>Dashboard</Link>
             <Link href={"/postit-board"} className={"btn"}>Post-it Notes</Link>
+            <Link href={"/QuickNotes"} className={"btn"}>QuickNotes</Link>
             <Link href={"/"} className={"btn"}>Quick Notes</Link>
             <Link href={"/chat"} className={"btn"}>Chat</Link>
         </Authenticated>
