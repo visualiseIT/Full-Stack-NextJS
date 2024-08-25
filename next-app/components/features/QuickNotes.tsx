@@ -64,7 +64,7 @@ function QuickNotes() {
                 <br/>
                 <br/>
                 <h2>Notes:</h2>
-                <div className="grid grid-cols-4 gap-y-4 gap-x-2 relative" style={{ minHeight: '50vh' }}>
+                <div className="grid grid-cols-4 gap-y-4 gap-x-2 relative" style={{ minHeight: '50vh', perspective:'1000px' }}>
                     {showNotes && notes?.map((note) => (<QuickNote note={note} selectedNodes={selectedNodes} onQNoteClick={onQNoteClick} />))}
                 </div>
             </Authenticated>
