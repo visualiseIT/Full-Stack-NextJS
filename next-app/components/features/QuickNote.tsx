@@ -14,7 +14,7 @@ function QuickNote(props: any) {
     }, []);
 
     const style = {
-        transform: animate ? 'translate(0, 0) rotateY(0deg) scale(1)' : `translate(${Math.random() * 100 - 50}vw, ${Math.random() * 100 - 50}vh) rotateY(${Math.random() * 720 - 360}deg) scale(0.1)`,
+        transform: animate ? 'translate(0, 0) rotateY(0deg) rotateX(0deg) scale(1)' : `translate(${Math.random() * 100 - 50}vw, ${Math.random() * 100 - 50}vh) rotateY(${Math.random() * 720 - 360}deg) rotateX(${Math.random() * 720 - 360}deg) scale(0.1)`,
         opacity: animate ? 1 : 0,
         transition: 'transform 1s ease-out, opacity 0.5s ease-out, scale 0.5s ease-out',
     };
