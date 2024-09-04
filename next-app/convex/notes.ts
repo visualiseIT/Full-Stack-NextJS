@@ -40,3 +40,35 @@ export const createNote = mutation({
         return newNoteId;
     },
 })
+
+// Define the updateNote mutation
+export const updateNote = mutation({
+    // Define the arguments your mutation will accept
+    args: {
+        noteId: v.id("notes"),
+        title: v.optional(v.string()),
+        text: v.string()
+    },
+    handler: async (ctx, args) => {
+
+        const {noteId, ...rest} = args;
+
+        // Obtain the current user identity and handle unauthorized access.
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new ConvexError("User not authenticated");
+        }
+        const existingDocument = await ctx.db.get(noteId);
+
+        if (!existingDocument) {
+            throw new Error("Not found");
+        }
+
+        if (existingDocument.user !== identity.subject) {
+            throw new Error("Unauthorized");
+        }
+
+        // Update the note in the database
+        await ctx.db.patch( noteId, { ...rest });
+    },
+});
