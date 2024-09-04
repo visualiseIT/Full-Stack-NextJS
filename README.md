@@ -4,7 +4,7 @@
 
 Built with `create-next-app`
 
-using `Typescript` `Tailwind` `Convex` `Clerk`
+using `Typescript` `Tailwind` `Convex` `Clerk` `Shadcn`
 
 To run the app in dev mode:
 
