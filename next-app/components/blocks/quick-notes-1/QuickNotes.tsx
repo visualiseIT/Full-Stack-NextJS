@@ -1,10 +1,10 @@
 'use client'
 
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Authenticated, useMutation, useQuery} from "convex/react";
 import {api} from "@/convex/_generated/api";
 import {Id} from "@/convex/_generated/dataModel";
-import QuickNote from "@/components/features/QuickNote";
+import QuickNote from "@/components/blocks/quick-notes-1/QuickNote";
 
 function QuickNotes() {
 
@@ -12,13 +12,8 @@ function QuickNotes() {
     const [postContent, setPostContent] = useState('');
     const createNote = useMutation(api.notes.createNote);
     const notes = useQuery(api.notes.getNotes);
-    const [showNotes, setShowNotes] = useState(false);
 
-    useEffect(() => {
-        // Delay showing the notes to allow for the initial positioning
-        const timer = setTimeout(() => setShowNotes(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
+
 
     let onQNoteClick = (_id: Id<any>)=>{
         //alert(_id);
@@ -64,8 +59,8 @@ function QuickNotes() {
                 <br/>
                 <br/>
                 <h2>Notes:</h2>
-                <div className="grid grid-cols-4 gap-y-4 gap-x-2 relative" style={{ minHeight: '50vh', perspective:'1000px' }}>
-                    {showNotes && notes?.map((note) => (<QuickNote note={note} selectedNodes={selectedNodes} onQNoteClick={onQNoteClick} />))}
+                <div className="grid grid-cols-4 gap-y-4 gap-x-2" >
+                    {notes?.map((note) => (<QuickNote note={note} selectedNodes={selectedNodes} onQNoteClick={onQNoteClick} />))}
                 </div>
             </Authenticated>
         </div>

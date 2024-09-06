@@ -13,11 +13,14 @@ export function Navbar() {
             <UserButton/>
             &nbsp;
             &nbsp;
-            <Link href={"/dashboard"} className={"btn"}>Dashboard</Link>
-            <Link href={"/datadashboard"} className={"btn"}>Dashboard 2</Link>
+            <Link href={"/"} className={"btn"}>Home</Link>
+            <Link href={"/QuickNotes1"} className={"btn"}>QuickNotes-1</Link>
+            <Link href={"/QuickNotes2"} className={"btn"}>QuickNotes-2</Link>
+ 
             <Link href={"/postit-board"} className={"btn"}>Post-it Notes</Link>
-            <Link href={"/QuickNotes"} className={"btn"}>QuickNotes</Link>
-            <Link href={"/"} className={"btn"}>Quick Notes</Link>
+            <Link href={"/datadashboard"} className={"btn"}>Dashboard</Link>
+            <Link href={"/dashboard"} className={"btn"}>Dashboard 2</Link>
+            
             <Link href={"/chat"} className={"btn"}>Chat</Link>
         </Authenticated>
     </div>;
