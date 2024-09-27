@@ -35,37 +35,42 @@ function QuickNotes() {
         });
     };
 
-
-
     return (
-        <div className={"mb-20"}>
+        <div className="mb-20">
             <Authenticated>
-                <div className="flex flex-row min-w-screen justify-center items-center">
-                    <div className="flex flex-col justify-center items-center">
-                        <h1>QuickNotes</h1>
-                        <br/>
-                        <textarea
-                            rows={5}
-                            cols={44}
-                            value={postContent} // ...force the input's value to match the state variable...
-                            onChange={e => setPostContent(e.target.value)} // ... and update the state variable on any edits!
-                        />
-                        <br/>
-                        <br/>
-                        <button className="btn btn-blue" onClick={() => {
-                            createNote({text: postContent}).then(() => {
-                                setPostContent("");
-                            })
-                        }}>
-                            Add Quick Note
-                        </button>
+                <div className="relative w-full max-w-2xl mx-auto mb-8">
+                    <div className="absolute inset-0 transform rotate-2 scale-98 bg-yellow-100 rounded-lg shadow-lg"></div>
+                    <div className="absolute inset-0 transform -rotate-2 scale-99 bg-yellow-50 rounded-lg shadow-lg"></div>
+                    <div className="bg-yellow-50 rounded-lg shadow-lg p-8 transform rotate-0 relative z-10">
+                        <div className="flex flex-col justify-center items-center">
+                            <h1 className="text-3xl font-bold mb-4 text-gray-800">QuickNotes</h1>
+                            <textarea
+                                rows={5}
+                                cols={44}
+                                className="w-full p-2 border border-gray-300 rounded resize-none mb-4"
+                                value={postContent}
+                                onChange={e => setPostContent(e.target.value)}
+                                placeholder="Write your note here..."
+                            />
+                            <button 
+                                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow"
+                                onClick={() => {
+                                    createNote({text: postContent}).then(() => {
+                                        setPostContent("");
+                                    })
+                                }}
+                            >
+                                Add Quick Note
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <br/>
-                <br/>
-                <h2>Notes:</h2>
+                
+                <h2 className="text-2xl font-bold mb-4 text-center">Notes:</h2>
                 <div className="grid grid-cols-4 gap-y-4 gap-x-2 relative" style={{ minHeight: '50vh', perspective:'1000px' }}>
-                    {showNotes && notes?.map((note) => (<QuickNote note={note} selectedNodes={selectedNodes} onQNoteClick={onQNoteClick} />))}
+                    {showNotes && notes?.map((note) => (
+                        <QuickNote key={note._id} note={note} selectedNodes={selectedNodes} onQNoteClick={onQNoteClick} />
+                    ))}
                 </div>
             </Authenticated>
         </div>
