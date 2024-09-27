@@ -2,7 +2,7 @@ import { SignInButton } from "@clerk/nextjs";
 
 export default function WelcomePage() {
   return (
-    <div className="bg-yellow-100 rounded-lg shadow-lg p-8 max-w-2xl mx-auto transform rotate-1">
+    <div className="bg-yellow-100 rounded-lg shadow-lg p-8 max-w-2xl mx-auto transform rotate-1 animate-spin-in">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-6 text-gray-800">Welcome to QuickNotes</h1>
         <p className="text-xl mb-8 text-gray-700">
