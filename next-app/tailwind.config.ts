@@ -68,24 +68,24 @@ const config = {
           to: { height: "0" },
         },
         'spin-in': {
-          '0%': { transform: 'rotate(1080deg) scale(0)', opacity: '1' },
+          '0%': { transform: 'rotate(360deg) scale(0)', opacity: '1' },
           '100%': { transform: 'rotate(1deg) scale(1)', opacity: '1' },
         },
         'spin-in-delayed-1': {
-          '0%, 25%': { transform: 'rotate(1080deg) scale(0)', opacity: '0' },
-          '100%': { transform: 'rotate(-2deg) scale(0.98)', opacity: '1' },
+          '0%, 25%': { transform: 'rotate(720deg) scale(0)', opacity: '0' },
+          '100%': { transform: 'rotate(-2deg) scale(0.99)', opacity: '1' },
         },
         'spin-in-delayed-2': {
-          '0%, 50%': { transform: 'rotate(1080deg) scale(0)', opacity: '0' },
-          '100%': { transform: 'rotate(3deg) scale(0.95)', opacity: '1' },
+          '0%, 50%': { transform: 'rotate(360deg) scale(0)', opacity: '0' },
+          '100%': { transform: 'rotate(3deg) scale(0.98)', opacity: '1' },
         }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        'spin-in': 'spin-in 1s ease-out forwards',
-        'spin-in-delayed-1': 'spin-in-delayed-1 1.25s ease-out forwards',
-        'spin-in-delayed-2': 'spin-in-delayed-2 1.5s ease-out forwards',
+        'spin-in': 'spin-in 0.5s ease-in forwards',
+        'spin-in-delayed-1': 'spin-in-delayed-1 1s ease-out forwards',
+        'spin-in-delayed-2': 'spin-in-delayed-2 1.25s ease-out forwards',
       },
     },
   },
