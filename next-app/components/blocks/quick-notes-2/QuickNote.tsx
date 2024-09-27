@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {Button} from "@/components/ui/button";
 
 function QuickNote(props: any) {
@@ -6,11 +6,24 @@ function QuickNote(props: any) {
     const {note, selectedNodes, onQNoteClick} = props;
 
     const [animate, setAnimate] = useState(false);
+    const cardRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         // Delay the animation start slightly to ensure the initial state is rendered
-        const timer = setTimeout(() => setAnimate(true), 50);
-        return () => clearTimeout(timer);
+        const animationTimer = setTimeout(() => setAnimate(true), 50);
+
+        // Set up the transition change after the animation
+        const transitionTimer = setTimeout(() => {
+            if (cardRef.current) {
+                cardRef.current.style.transition = 'transform 0.3s ease-out, opacity 0.5s ease-in, scale 0.5s ease-in';
+                // cardRef.current.style.transitionDuration = '300ms, 500ms, 500ms, 350ms';
+            }
+        }, 1050); // 1000ms for animation + 50ms initial delay
+
+        return () => {
+            clearTimeout(animationTimer);
+            clearTimeout(transitionTimer);
+        };
     }, []);
 
     const style = {
@@ -21,6 +34,7 @@ function QuickNote(props: any) {
 
     return (
         <div
+            ref={cardRef}
             style={style}
             className={`card ${selectedNodes?.includes(note._id) ? "selected" : ""}`}
             key={note._id}

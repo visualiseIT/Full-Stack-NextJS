@@ -38,7 +38,7 @@ function QuickNotes() {
     return (
         <div className="mb-20">
             <Authenticated>
-                <div className="relative w-full max-w-2xl mx-auto mb-8">
+                <div className="relative w-full max-w-sm mx-auto mb-8"> {/* Changed to max-w-sm */}
                     <div className="absolute inset-0 transform rotate-2 scale-98 bg-yellow-100 rounded-lg shadow-lg"></div>
                     <div className="absolute inset-0 transform -rotate-2 scale-99 bg-yellow-50 rounded-lg shadow-lg"></div>
                     <div className="bg-yellow-50 rounded-lg shadow-lg p-8 transform rotate-0 relative z-10">
@@ -52,7 +52,7 @@ function QuickNotes() {
                                 onChange={e => setPostContent(e.target.value)}
                                 placeholder="Write your note here..."
                             />
-                            <button 
+                            <button
                                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow"
                                 onClick={() => {
                                     createNote({text: postContent}).then(() => {
@@ -65,7 +65,7 @@ function QuickNotes() {
                         </div>
                     </div>
                 </div>
-                
+
                 <h2 className="text-2xl font-bold mb-4 text-center">Notes:</h2>
                 <div className="grid grid-cols-4 gap-y-4 gap-x-2 relative" style={{ minHeight: '50vh', perspective:'1000px' }}>
                     {showNotes && notes?.map((note) => (
