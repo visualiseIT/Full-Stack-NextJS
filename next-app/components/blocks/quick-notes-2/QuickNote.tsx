@@ -3,7 +3,7 @@ import {Button} from "@/components/ui/button";
 
 function QuickNote(props: any) {
 
-    const {note, selectedNodes, onQNoteClick, onEditNote} = props;
+    const {note, selectedNodes, onQNoteClick, onEditNote, onArchiveNote} = props;
 
     const [animate, setAnimate] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
@@ -47,7 +47,15 @@ function QuickNote(props: any) {
                         <FilePenIcon className="w-4 h-4"/>
                         <span className="sr-only">Edit</span>
                     </Button>
-                    <Button variant="ghost" size="icon" className="hover:bg-yellow-200">
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-yellow-200"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onArchiveNote(note._id);
+                        }}
+                    >
                         <TrashIcon className="w-4 h-4"/>
                         <span className="sr-only">Delete</span>
                     </Button>

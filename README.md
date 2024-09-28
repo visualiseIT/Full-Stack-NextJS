@@ -53,6 +53,9 @@ create file: [ConvexClerkProvider.tsx](next-app%2Fcomponents%2Fproviders%2FConve
 add NavBar with SignIn buttons etc.,
 
 
+ShadCN (0.9.x is buggy, use 0.8.0)
+> npx shadcn-ui@0.8.0 add dialog
+
 ---
 inspiration:
 https://www.youtube.com/watch?v=4ojKx770_0Q

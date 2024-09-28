@@ -5,6 +5,8 @@ import {Authenticated, useMutation, useQuery} from "convex/react";
 import {api} from "@/convex/_generated/api";
 import {Id } from "@/convex/_generated/dataModel";
 import QuickNote from "@/components/blocks/quick-notes-2/QuickNote";
+import ArchivedNotesDialog from "@/components/blocks/quick-notes-2/ArchivedNotesDialog";
+import {TrashIcon} from "lucide-react";
 
 interface Note {
     _id: Id<"notes">;
@@ -22,6 +24,8 @@ function QuickNotes() {
     const notes = useQuery(api.notes.getNotes);
     const [showNotes, setShowNotes] = useState(false);
     const [editingNoteId, setEditingNoteId] = useState<Id<"notes"> | null>(null);
+    const archiveNote = useMutation(api.notes.archiveNote);
+    const [showArchivedNotes, setShowArchivedNotes] = useState(false);
 
     useEffect(() => {
         // Delay showing the notes to allow for the initial positioning
@@ -50,7 +54,9 @@ function QuickNotes() {
         setPostContent(note.text);
     }
 
-
+    const handleArchiveNote = (noteId: Id<"notes">) => {
+        archiveNote({ noteId, archived: true });
+    };
 
     return (
         <div className="mb-20">
@@ -112,9 +118,17 @@ function QuickNotes() {
                      style={{minHeight: '50vh', perspective: '1000px'}}>
                     {showNotes && notes?.map((note) => (
                         <QuickNote key={note._id} note={note} selectedNodes={selectedNodes}
-                                   onQNoteClick={onQNoteClick} onEditNote={handleEditNote}/>
+                                   onQNoteClick={onQNoteClick} onEditNote={handleEditNote} onArchiveNote={handleArchiveNote}/>
                     ))}
                 </div>
+
+                <button
+                    className="fixed bottom-4 right-4 bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg"
+                    onClick={() => setShowArchivedNotes(true)}
+                >
+                    <TrashIcon className="w-6 h-6" />
+                </button>
+                <ArchivedNotesDialog open={showArchivedNotes} onClose={() => setShowArchivedNotes(false)} />
             </Authenticated>
         </div>
     );
