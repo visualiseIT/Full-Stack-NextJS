@@ -23,7 +23,7 @@ export default function Dashboard() {
   const [data, setData] = useState(initialData)
   const [selectedDataPoint, setSelectedDataPoint] = useState(null)
 
-  const handleChartClick = (data) => {
+  const handleChartClick = (data: any) => {
     setSelectedDataPoint(data)
   }
 

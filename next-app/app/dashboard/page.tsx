@@ -145,7 +145,7 @@ export default function Component() {
     )
 }
 
-function BarchartChart(props) {
+function BarchartChart(props: any) {
     return (
         <div {...props}>
             <ChartContainer
@@ -185,7 +185,7 @@ function BarchartChart(props) {
 }
 
 
-function HomeIcon(props) {
+function HomeIcon(props: any) {
     return (
         <svg
             {...props}
@@ -206,7 +206,7 @@ function HomeIcon(props) {
 }
 
 
-function LinechartChart(props) {
+function LinechartChart(props: any) {
     return (
         <div {...props}>
             <ChartContainer
@@ -249,7 +249,7 @@ function LinechartChart(props) {
 }
 
 
-function LinechartmultipleChart(props) {
+function LinechartmultipleChart(props: any) {
     return (
         <div {...props}>
             <ChartContainer
@@ -298,7 +298,7 @@ function LinechartmultipleChart(props) {
 }
 
 
-function LogOutIcon(props) {
+function LogOutIcon(props: any) {
     return (
         <svg
             {...props}
@@ -320,7 +320,7 @@ function LogOutIcon(props) {
 }
 
 
-function MenuIcon(props) {
+function MenuIcon(props: any) {
     return (
         <svg
             {...props}
@@ -342,7 +342,7 @@ function MenuIcon(props) {
 }
 
 
-function RadialbarchartChart(props) {
+function RadialbarchartChart(props: any) {
     return (
         <div {...props}>
             <ChartContainer
@@ -393,7 +393,7 @@ function RadialbarchartChart(props) {
 }
 
 
-function SettingsIcon(props) {
+function SettingsIcon(props: any) {
     return (
         <svg
             {...props}
@@ -414,7 +414,7 @@ function SettingsIcon(props) {
 }
 
 
-function StarIcon(props) {
+function StarIcon(props: any) {
     return (
         <svg
             {...props}

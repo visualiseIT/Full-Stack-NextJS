@@ -3,8 +3,14 @@
 import React, {useState, useEffect} from 'react';
 import {Authenticated, useMutation, useQuery} from "convex/react";
 import {api} from "@/convex/_generated/api";
-import {Id, Note} from "@/convex/_generated/dataModel";
+import {Id } from "@/convex/_generated/dataModel";
 import QuickNote from "@/components/blocks/quick-notes-2/QuickNote";
+
+interface Note {
+    _id: Id<"notes">;
+    title: string;
+    text: string;
+}
 
 function QuickNotes() {
 
@@ -45,7 +51,7 @@ function QuickNotes() {
     }
 
 
-    
+
     return (
         <div className="mb-20">
             <Authenticated>

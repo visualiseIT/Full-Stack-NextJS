@@ -48,7 +48,10 @@ function QuickNotes() {
                         <br/>
                         <br/>
                         <button className="btn btn-blue" onClick={() => {
-                            createNote({text: postContent}).then(() => {
+                            createNote({
+                                text: postContent,
+                                title: ''
+                            }).then(() => {
                                 setPostContent("");
                             })
                         }}>
@@ -60,7 +63,7 @@ function QuickNotes() {
                 <br/>
                 <h2>Notes:</h2>
                 <div className="grid grid-cols-4 gap-y-4 gap-x-2" >
-                    {notes?.map((note) => (<QuickNote note={note} selectedNodes={selectedNodes} onQNoteClick={onQNoteClick} />))}
+                    {notes?.map((note) => (<QuickNote key={note._id} note={note} selectedNodes={selectedNodes} onQNoteClick={onQNoteClick} />))}
                 </div>
             </Authenticated>
         </div>

@@ -58,7 +58,7 @@ function QuickNote(props: any) {
 export default QuickNote;
 
 
-function FilePenIcon(props) {
+function FilePenIcon(props: any) {
     return (
         <svg
             {...props}
@@ -79,7 +79,7 @@ function FilePenIcon(props) {
     )
 }
 
-function TrashIcon(props) {
+function TrashIcon(props: any) {
     return (
         <svg
             {...props}

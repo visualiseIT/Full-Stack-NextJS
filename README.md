@@ -1,19 +1,31 @@
-# Full Stack NextJS Ai Notes App
+# Full Stack NextJS Notes App (+ChatGPT)
 
+
+`NextJS` `React` `Typescript` `Tailwind` `Convex` `Clerk` `Shadcn`
+
+
+
+![quick-notes_thumb.png](quick-notes_thumb.png)
 ![Screenshot.png](Screenshot.png)
 
-Built with `create-next-app`
 
-using `Typescript` `Tailwind` `Convex` `Clerk` `Shadcn`
+Built with `create-next-app`
 
 To run the app in dev mode:
 
 > cd next-app
-
+> 
 > npm run dev
 
-in another terminal:
+To deploy Convex functions,
+in another terminal run:
 > npx convex dev
+
+To deploy on vercel:
+
+> vercel
+> 
+> vercel --prod
 
 ## Build Notes:
 
