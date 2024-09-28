@@ -41,7 +41,7 @@ function QuickNote(props: any) {
             onClick={() => onQNoteClick(note._id)}
         >
             <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium">No title</h3>
+                <h3 className="text-lg font-medium">{note.title || "No title"}</h3>
                 <div className="flex items-center gap-2">
                     <Button variant="ghost" size="icon" className="hover:bg-yellow-200">
                         <FilePenIcon className="w-4 h-4"/>

@@ -9,6 +9,7 @@ import QuickNote from "@/components/blocks/quick-notes-2/QuickNote";
 function QuickNotes() {
 
     const [selectedNodes, setSelectedNodes] = useState<Id<any>[]>([]);
+    const [postTitle, setPostTitle] = useState('QuickNote');
     const [postContent, setPostContent] = useState('');
     const createNote = useMutation(api.notes.createNote);
     const notes = useQuery(api.notes.getNotes);
@@ -43,10 +44,15 @@ function QuickNotes() {
                     <div className="absolute inset-0 transform -rotate-2 scale-99 bg-yellow-50 rounded-lg shadow-lg"></div>
                     <div className="bg-yellow-50 rounded-lg shadow-lg p-8 transform rotate-0 relative z-10">
                         <div className="flex flex-col justify-center items-center">
-                            <h1 className="text-3xl font-bold mb-4 text-gray-800">QuickNotes</h1>
+                            <input
+                                type="text"
+                                className="text-2xl font-bold mb-4 text-gray-800 bg-transparent border-b border-gray-300 focus:outline-none focus:border-blue-500 w-full text-center"
+                                value={postTitle}
+                                onChange={e => setPostTitle(e.target.value)}
+                                placeholder="Note Title"
+                            />
                             <textarea
                                 rows={5}
-                                cols={44}
                                 className="w-full p-2 border border-gray-300 rounded resize-none mb-4"
                                 value={postContent}
                                 onChange={e => setPostContent(e.target.value)}
@@ -55,7 +61,8 @@ function QuickNotes() {
                             <button
                                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow"
                                 onClick={() => {
-                                    createNote({text: postContent}).then(() => {
+                                    createNote({ title: postTitle, text: postContent }).then(() => {
+                                        setPostTitle("QuickNote");
                                         setPostContent("");
                                     })
                                 }}
