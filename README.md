@@ -1,4 +1,4 @@
-# Full Stack NextJS Notes App (+ChatGPT)
+# Full Stack NextJS Notes App 
 
 
 `NextJS` `React` `Typescript` `Tailwind` `Convex` `Clerk` `Shadcn`
