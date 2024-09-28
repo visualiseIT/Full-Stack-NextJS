@@ -3,7 +3,7 @@ import {ConvexError, v} from "convex/values";
 
 
 export const getNotes = query({
-    async handler(ctx){
+    async handler(ctx) {
 
         const identity = await ctx.auth.getUserIdentity();
 
@@ -20,7 +20,7 @@ export const getNotes = query({
 })
 
 export const createNote = mutation({
-  args: { title: v.string(), text: v.string() },
+    args: {title: v.string(), text: v.string()},
     handler: async (ctx, args) => {
 
         const identity = await ctx.auth.getUserIdentity();
@@ -70,6 +70,6 @@ export const updateNote = mutation({
         }
 
         // Update the note in the database
-        await ctx.db.patch( noteId, { ...rest });
+        await ctx.db.patch(noteId, {...rest});
     },
 });
