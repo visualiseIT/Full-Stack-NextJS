@@ -60,11 +60,11 @@ function QuickNotes() {
     };
 
     const pastelColors = [
-        { name: 'Yellow', value: 'bg-yellow-50' },
-        { name: 'Green', value: 'bg-green-50' },
-        { name: 'Blue', value: 'bg-blue-50' },
-        { name: 'Pink', value: 'bg-pink-50' },
-        { name: 'Purple', value: 'bg-purple-50' },
+        { name: 'Yellow', value: 'bg-yellow-100' },
+        { name: 'Green', value: 'bg-green-100' },
+        { name: 'Blue', value: 'bg-blue-100' },
+        { name: 'Pink', value: 'bg-pink-100' },
+        { name: 'Purple', value: 'bg-purple-100' },
     ];
 
     return (
@@ -86,7 +86,7 @@ function QuickNotes() {
                             />
                             <textarea
                                 rows={5}
-                                className={`w-full p-2 border border-gray-300 rounded resize-none mb-4 ${selectedColor}`}
+                                className={`w-full p-2 border border-gray-300 rounded resize-none mb-4 ${selectedColor.replace("100", "50")}`}
                                 value={postContent}
                                 onChange={e => setPostContent(e.target.value)}
                                 placeholder="Write your note here..."
