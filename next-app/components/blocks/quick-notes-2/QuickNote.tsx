@@ -36,7 +36,7 @@ function QuickNote(props: any) {
         <div
             ref={cardRef}
             style={style}
-            className={`card ${selectedNodes?.includes(note._id) ? "selected" : ""}`}
+            className={`card ${selectedNodes?.includes(note._id) ? "selected" : ""} ${note.color || 'bg-yellow-50'}`}
             key={note._id}
             onClick={() => onQNoteClick(note._id)}
         >

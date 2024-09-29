@@ -26,6 +26,7 @@ function QuickNotes() {
     const [editingNoteId, setEditingNoteId] = useState<Id<"notes"> | null>(null);
     const archiveNote = useMutation(api.notes.archiveNote);
     const [showArchivedNotes, setShowArchivedNotes] = useState(false);
+    const [selectedColor, setSelectedColor] = useState('bg-yellow-50');
 
     useEffect(() => {
         // Delay showing the notes to allow for the initial positioning
@@ -58,6 +59,14 @@ function QuickNotes() {
         archiveNote({ noteId, archived: true });
     };
 
+    const pastelColors = [
+        { name: 'Yellow', value: 'bg-yellow-50' },
+        { name: 'Green', value: 'bg-green-50' },
+        { name: 'Blue', value: 'bg-blue-50' },
+        { name: 'Pink', value: 'bg-pink-50' },
+        { name: 'Purple', value: 'bg-purple-50' },
+    ];
+
     return (
         <div className="mb-20">
             <Authenticated>
@@ -66,7 +75,7 @@ function QuickNotes() {
                         className="absolute inset-0 transform rotate-2 scale-98 bg-yellow-100 rounded-lg shadow-lg"></div>
                     <div
                         className="absolute inset-0 transform -rotate-2 scale-99 bg-yellow-50 rounded-lg shadow-lg"></div>
-                    <div className="bg-yellow-50 rounded-lg shadow-lg p-8 transform rotate-0 relative z-10">
+                    <div className={`rounded-lg shadow-lg p-8 transform rotate-0 relative z-10 ${selectedColor}`}>
                         <div className="flex flex-col justify-center items-center">
                             <input
                                 type="text"
@@ -77,38 +86,51 @@ function QuickNotes() {
                             />
                             <textarea
                                 rows={5}
-                                className="w-full p-2 border border-gray-300 rounded resize-none mb-4"
+                                className={`w-full p-2 border border-gray-300 rounded resize-none mb-4 ${selectedColor}`}
                                 value={postContent}
                                 onChange={e => setPostContent(e.target.value)}
                                 placeholder="Write your note here..."
                             />
-                            {
-                                editingNoteId
-                                    ?
+                            <div className="flex items-center gap-4 flex-wrap justify-center">
+                                <div className="flex items-center gap-2 mr-4">
+                                    {pastelColors.map((color) => (
+                                        <button
+                                            key={color.value}
+                                            className={`w-6 h-6 rounded-full ${color.value} ${selectedColor === color.value ? 'ring-2 ring-blue-500' : 'ring-1 ring-black-500'}`}
+                                            onClick={() => setSelectedColor(color.value)}
+                                            title={color.name}
+                                        />
+                                    ))}
+                                </div>
+                                {editingNoteId ? (
                                     <button
                                         className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow"
                                         onClick={() => {
-                                            updateNote({noteId: editingNoteId, title: postTitle, text: postContent}).then(() => {
+                                            updateNote({noteId: editingNoteId, title: postTitle, text: postContent, color: selectedColor}).then(() => {
                                                 setPostTitle("QuickNote");
                                                 setPostContent("");
+                                                setSelectedColor('bg-yellow-50');
+                                                setEditingNoteId(null);
                                             })
                                         }}
                                     >
                                         Save Quick Note
                                     </button>
-                                    :
+                                ) : (
                                     <button
                                         className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow"
                                         onClick={() => {
-                                            createNote({title: postTitle, text: postContent}).then(() => {
+                                            createNote({title: postTitle, text: postContent, color: selectedColor}).then(() => {
                                                 setPostTitle("QuickNote");
                                                 setPostContent("");
+                                                setSelectedColor('bg-yellow-50');
                                             })
                                         }}
                                     >
                                         Add Quick Note
                                     </button>
-                            }
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

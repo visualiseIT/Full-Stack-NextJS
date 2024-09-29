@@ -49,7 +49,7 @@ export const getArchivedNotes = query({
 })
 
 export const createNote = mutation({
-    args: {title: v.string(), text: v.string()},
+    args: {title: v.string(), text: v.string(), color: v.optional(v.string())},
     handler: async (ctx, args) => {
 
         const identity = await ctx.auth.getUserIdentity();
@@ -65,6 +65,7 @@ export const createNote = mutation({
         const newNoteId = await ctx.db.insert("notes", {
             title: args.title,
             text: args.text,
+            color: args.color,
             user: userId
         });
         return newNoteId;
@@ -77,7 +78,8 @@ export const updateNote = mutation({
     args: {
         noteId: v.id("notes"),
         title: v.optional(v.string()),
-        text: v.string()
+        text: v.string(),
+        color: v.optional(v.string())
     },
     handler: async (ctx, args) => {
 
