@@ -143,7 +143,7 @@ function QuickNotes() {
                 )}
 
                 <h2 className="text-2xl font-bold mb-4 text-center">Notes:</h2>
-                <div className="grid grid-cols-4 gap-y-4 gap-x-2 relative"
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-4 gap-x-2 relative"
                      style={{minHeight: '50vh', perspective: '1000px'}}>
                     {showNotes && notes?.map((note) => (
                         <QuickNote key={note._id} note={note} selectedNodes={selectedNodes}
@@ -151,22 +151,25 @@ function QuickNotes() {
                     ))}
                 </div>
 
-                <button
-                    className="fixed bottom-4 left-4 bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg"
-                    onClick={() => setShowArchivedNotes(true)}
-                >
-                    <TrashIcon className="w-6 h-6" />
-                </button>
-                <ArchivedNotesDialog open={showArchivedNotes} onClose={() => setShowArchivedNotes(false)} />
-
-                {!showNoteCreator && (
+                <div className="fixed bottom-4 left-4 right-4 flex justify-between">
                     <button
-                        className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-2xl"
-                        onClick={() => setShowNoteCreator(true)}
+                        className="bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg"
+                        onClick={() => setShowArchivedNotes(true)}
                     >
-                        +
+                        <TrashIcon className="w-6 h-6" />
                     </button>
-                )}
+
+                    {!showNoteCreator && (
+                        <button
+                            className="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-2xl"
+                            onClick={() => setShowNoteCreator(true)}
+                        >
+                            +
+                        </button>
+                    )}
+                </div>
+
+                <ArchivedNotesDialog open={showArchivedNotes} onClose={() => setShowArchivedNotes(false)} />
             </Authenticated>
         </div>
     );
