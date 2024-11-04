@@ -32,7 +32,7 @@ const QuickNote: React.FC<QuickNoteProps> = ({
     const [animate, setAnimate] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
     const prevPositionRef = useRef({ row: -1, col: -1 });
-    // const isFirstRender = useRef(true);
+    const isFirstRender = useRef(true);
 
     const getCurrentPosition = () => ({
         row: Math.floor(index / columnCount),
@@ -56,7 +56,13 @@ const QuickNote: React.FC<QuickNoteProps> = ({
         if (positionChanged) {
             // Only animate if position changed
             setAnimate(false);
-            const delay = (currentPosition.row + currentPosition.col) * 50; // Stagger effect
+            let delay: number;
+            if (isFirstRender.current) {
+                isFirstRender.current = false;
+                delay = Math.random() * 500 + (currentPosition.row + currentPosition.col) * 50;
+            } else {
+                delay = (currentPosition.row + currentPosition.col) * 50; // Stagger effect
+            }
             const animationTimer = setTimeout(() => setAnimate(true), 50 + delay);
 
             const transitionTimer = setTimeout(() => {
@@ -92,9 +98,10 @@ const QuickNote: React.FC<QuickNoteProps> = ({
     };
 
     const style = {
-        transform: animate ? 'translate(0, 0) rotateY(0deg) rotateX(0deg) scale(1)' : `translate(${Math.random() * 100 - 50}vw, ${Math.random() * 100 - 50}vh) rotateY(${Math.random() * 720 - 360}deg) rotateX(${Math.random() * 720 - 360}deg) scale(0.1)`,
+        transform: animate ? 'translate(0, 0) rotateY(0deg) rotateX(0deg) scale(1)' :
+            `translate(${Math.random() * 200 - 100}vw, ${Math.random() * 200 - 100}vh) rotateY(${Math.random() * 1080 - 540}deg) rotateX(${Math.random() * 1080 - 540}deg) scale(0.1)`,
         opacity: animate ? 1 : 0,
-        transition: 'transform 1s ease-in, opacity 0.5s ease-in, scale 0.5s ease-in',
+        transition: 'transform 1s ease-in-out, opacity 0.5s ease-in, scale 0.5s ease-in',
     };
 
     return (
