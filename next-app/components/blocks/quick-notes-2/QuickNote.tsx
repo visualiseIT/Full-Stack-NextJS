@@ -59,7 +59,7 @@ const QuickNote: React.FC<QuickNoteProps> = ({
             // For even-numbered rows, start with right rotation
             // For odd-numbered rows, start with left rotation
             const startWithRight = rowIndex % 2 === 0;
-            return (colIndex % 2 === 0) === startWithRight ? 2 : -2;
+            return (colIndex % 2 === 0) === startWithRight ? -2 : 2;
         } else {
             // For odd number of columns, simply alternate based on index
             return index % 2 === 0 ? -2 : 2;
