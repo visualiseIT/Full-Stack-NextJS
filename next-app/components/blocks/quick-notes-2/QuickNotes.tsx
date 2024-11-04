@@ -14,6 +14,27 @@ interface Note {
     text: string;
 }
 
+// Add this function to determine current column count based on screen size
+const useColumnCount = () => {
+    const [columnCount, setColumnCount] = useState(1);
+
+    useEffect(() => {
+        const updateColumnCount = () => {
+            const width = window.innerWidth;
+            if (width >= 1024) return setColumnCount(4);      // lg
+            if (width >= 768) return setColumnCount(3);       // md
+            if (width >= 640) return setColumnCount(2);       // sm
+            return setColumnCount(1);                         // mobile
+        };
+
+        updateColumnCount();
+        window.addEventListener('resize', updateColumnCount);
+        return () => window.removeEventListener('resize', updateColumnCount);
+    }, []);
+
+    return columnCount;
+};
+
 function QuickNotes() {
 
     const [selectedNodes, setSelectedNodes] = useState<Id<any>[]>([]);
@@ -28,6 +49,7 @@ function QuickNotes() {
     const [showArchivedNotes, setShowArchivedNotes] = useState(false);
     const [selectedColor, setSelectedColor] = useState('bg-yellow-50');
     const [showNoteCreator, setShowNoteCreator] = useState(false);
+    const columnCount = useColumnCount();
 
     useEffect(() => {
         // Delay showing the notes to allow for the initial positioning
@@ -150,6 +172,7 @@ function QuickNotes() {
                             key={note._id} 
                             note={note} 
                             index={index}
+                            columnCount={columnCount}
                             selectedNodes={selectedNodes}
                             onQNoteClick={onQNoteClick} 
                             onEditNote={handleEditNote} 

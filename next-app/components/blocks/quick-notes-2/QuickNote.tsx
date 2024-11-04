@@ -9,13 +9,14 @@ interface QuickNoteProps {
         color?: string;
     };
     index: number;
+    columnCount: number;
     selectedNodes: Id<"notes">[];
     onQNoteClick: (noteId: Id<"notes">) => void;
     onEditNote: (note: any) => void;
     onArchiveNote: (noteId: Id<"notes">) => void;
 }
 
-const QuickNote: React.FC<QuickNoteProps> = ({ note, index, selectedNodes, onQNoteClick, onEditNote, onArchiveNote }) => {
+const QuickNote: React.FC<QuickNoteProps> = ({ note, index, columnCount, selectedNodes, onQNoteClick, onEditNote, onArchiveNote }) => {
 
     const [animate, setAnimate] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
@@ -39,8 +40,19 @@ const QuickNote: React.FC<QuickNoteProps> = ({ note, index, selectedNodes, onQNo
     }, []);
 
     const getAlternatingRotation = () => {
-        // Alternate between -2 degrees (left) and 2 degrees (right)
-        return index % 2 === 0 ? -2 : 2;
+        const rowIndex = Math.floor(index / columnCount);
+        const colIndex = index % columnCount;
+        
+        // If even number of columns, alternate the starting direction for each row
+        if (columnCount % 2 === 0) {
+            // For even-numbered rows, start with right rotation
+            // For odd-numbered rows, start with left rotation
+            const startWithRight = rowIndex % 2 === 0;
+            return (colIndex % 2 === 0) === startWithRight ? 2 : -2;
+        } else {
+            // For odd number of columns, simply alternate based on index
+            return index % 2 === 0 ? -2 : 2;
+        }
     };
 
     const style = {
