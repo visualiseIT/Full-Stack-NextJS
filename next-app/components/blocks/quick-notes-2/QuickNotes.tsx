@@ -20,16 +20,27 @@ const useColumnCount = () => {
 
     useEffect(() => {
         const updateColumnCount = () => {
+            //console.log('Resize event fired!');  // Simple test log
             const width = window.innerWidth;
-            if (width >= 1024) return setColumnCount(4);      // lg
-            if (width >= 768) return setColumnCount(3);       // md
-            if (width >= 640) return setColumnCount(2);       // sm
-            return setColumnCount(1);                         // mobile
+            //console.log('Window width:', width);
+            let newCount = 1;
+            if (width >= 1800) newCount = 5;      // xlg
+            else if (width >= 1424) newCount = 4;      // lg
+            else if (width >= 1068) newCount = 3;      // md
+            else if (width >= 762) newCount = 2;       // sm
+            setColumnCount(newCount);
+            //console.log('Column count:', newCount);
         };
+
+        // Log when effect runs
+        //console.log('Effect running, adding event listener');
 
         updateColumnCount();
         window.addEventListener('resize', updateColumnCount);
-        return () => window.removeEventListener('resize', updateColumnCount);
+        return () => {
+            //console.log('Cleanup: removing event listener');
+            window.removeEventListener('resize', updateColumnCount);
+        };
     }, []);
 
     return columnCount;
@@ -165,17 +176,21 @@ function QuickNotes() {
                 )}
 
                 <h2 className="text-2xl font-bold mb-4 text-center">Notes:</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6 gap-x-4 relative p-4"
-                     style={{minHeight: '50vh', perspective: '1000px'}}>
+                <div className="grid gap-y-6 gap-x-4 relative p-4 justify-center"
+                     style={{
+                         minHeight: '50vh',
+                         perspective: '1000px',
+                         gridTemplateColumns: `repeat(${columnCount}, 320px)`
+                     }}>
                     {showNotes && notes?.map((note, index) => (
-                        <QuickNote 
-                            key={note._id} 
-                            note={note} 
+                        <QuickNote
+                            key={note._id}
+                            note={note}
                             index={index}
                             columnCount={columnCount}
                             selectedNodes={selectedNodes}
-                            onQNoteClick={onQNoteClick} 
-                            onEditNote={handleEditNote} 
+                            onQNoteClick={onQNoteClick}
+                            onEditNote={handleEditNote}
                             onArchiveNote={handleArchiveNote}
                         />
                     ))}
