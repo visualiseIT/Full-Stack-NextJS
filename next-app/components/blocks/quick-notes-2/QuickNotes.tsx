@@ -27,6 +27,7 @@ function QuickNotes() {
     const archiveNote = useMutation(api.notes.archiveNote);
     const [showArchivedNotes, setShowArchivedNotes] = useState(false);
     const [selectedColor, setSelectedColor] = useState('bg-yellow-50');
+    const [showNoteCreator, setShowNoteCreator] = useState(false);
 
     useEffect(() => {
         // Delay showing the notes to allow for the initial positioning
@@ -70,11 +71,16 @@ function QuickNotes() {
     return (
         <div className="mb-20">
             <Authenticated>
-                <div className="relative w-full max-w-sm mx-auto mb-8"> {/* Changed to max-w-sm */}
-                    <div
-                        className="absolute inset-0 transform rotate-2 scale-98 bg-yellow-100 rounded-lg shadow-lg"></div>
-                    <div
-                        className="absolute inset-0 transform -rotate-2 scale-99 bg-yellow-50 rounded-lg shadow-lg"></div>
+                {showNoteCreator && (
+                    <div className="relative w-full max-w-sm mx-auto mb-8"> {/* Changed to max-w-sm */}
+                    <button
+                        className="absolute -right-2 -top-2 bg-gray-500 hover:bg-gray-600 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg z-20"
+                        onClick={() => setShowNoteCreator(false)}
+                    >
+                        ×
+                    </button>
+                    <div className="absolute inset-0 transform rotate-2 scale-98 bg-yellow-100 rounded-lg shadow-lg"></div>
+                    <div className="absolute inset-0 transform -rotate-2 scale-99 bg-yellow-50 rounded-lg shadow-lg"></div>
                     <div className={`rounded-lg shadow-lg p-8 transform rotate-0 relative z-10 ${selectedColor}`}>
                         <div className="flex flex-col justify-center items-center">
                             <input
@@ -134,6 +140,7 @@ function QuickNotes() {
                         </div>
                     </div>
                 </div>
+                )}
 
                 <h2 className="text-2xl font-bold mb-4 text-center">Notes:</h2>
                 <div className="grid grid-cols-4 gap-y-4 gap-x-2 relative"
@@ -151,6 +158,15 @@ function QuickNotes() {
                     <TrashIcon className="w-6 h-6" />
                 </button>
                 <ArchivedNotesDialog open={showArchivedNotes} onClose={() => setShowArchivedNotes(false)} />
+
+                {!showNoteCreator && (
+                    <button
+                        className="fixed top-20 left-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-2xl"
+                        onClick={() => setShowNoteCreator(true)}
+                    >
+                        +
+                    </button>
+                )}
             </Authenticated>
         </div>
     );
