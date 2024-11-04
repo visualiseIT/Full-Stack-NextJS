@@ -31,7 +31,8 @@ const QuickNote: React.FC<QuickNoteProps> = ({
 
     const [animate, setAnimate] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
-    const prevPositionRef = useRef({ row: 0, col: 0 });
+    const prevPositionRef = useRef({ row: -1, col: -1 });
+    // const isFirstRender = useRef(true);
 
     const getCurrentPosition = () => ({
         row: Math.floor(index / columnCount),
@@ -39,9 +40,17 @@ const QuickNote: React.FC<QuickNoteProps> = ({
     });
 
     useEffect(() => {
+        // if (isFirstRender.current) {
+        //     isFirstRender.current = false;
+        //     const currentPosition = getCurrentPosition();
+        //     prevPositionRef.current = currentPosition;
+        //     setAnimate(true);
+        //     return;
+        // }
+
         const currentPosition = getCurrentPosition();
-        const positionChanged = 
-            currentPosition.row !== prevPositionRef.current.row || 
+        const positionChanged =
+            currentPosition.row !== prevPositionRef.current.row ||
             currentPosition.col !== prevPositionRef.current.col;
 
         if (positionChanged) {
@@ -49,7 +58,7 @@ const QuickNote: React.FC<QuickNoteProps> = ({
             setAnimate(false);
             const delay = (currentPosition.row + currentPosition.col) * 50; // Stagger effect
             const animationTimer = setTimeout(() => setAnimate(true), 50 + delay);
-            
+
             const transitionTimer = setTimeout(() => {
                 if (cardRef.current) {
                     cardRef.current.style.transition = 'transform 0.3s ease-out, opacity 0.5s ease-in, scale 0.5s ease-in';
@@ -61,7 +70,7 @@ const QuickNote: React.FC<QuickNoteProps> = ({
                 clearTimeout(transitionTimer);
             };
         }
-        
+
         // Update previous position
         prevPositionRef.current = currentPosition;
     }, [columnCount, index]);
