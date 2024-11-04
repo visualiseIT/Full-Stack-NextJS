@@ -143,11 +143,17 @@ function QuickNotes() {
                 )}
 
                 <h2 className="text-2xl font-bold mb-4 text-center">Notes:</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-4 gap-x-2 relative"
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6 gap-x-4 relative p-4"
                      style={{minHeight: '50vh', perspective: '1000px'}}>
                     {showNotes && notes?.map((note) => (
-                        <QuickNote key={note._id} note={note} selectedNodes={selectedNodes}
-                                   onQNoteClick={onQNoteClick} onEditNote={handleEditNote} onArchiveNote={handleArchiveNote}/>
+                        <QuickNote 
+                            key={note._id} 
+                            note={note} 
+                            selectedNodes={selectedNodes}
+                            onQNoteClick={onQNoteClick} 
+                            onEditNote={handleEditNote} 
+                            onArchiveNote={handleArchiveNote}
+                        />
                     ))}
                 </div>
 

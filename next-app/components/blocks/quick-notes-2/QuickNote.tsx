@@ -1,6 +1,11 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {Button} from "@/components/ui/button";
 
+const getRandomRotation = () => {
+    // Random rotation between -3 and 3 degrees
+    return Math.random() * 6 - 3;
+};
+
 function QuickNote(props: any) {
 
     const {note, selectedNodes, onQNoteClick, onEditNote, onArchiveNote} = props;
@@ -33,35 +38,43 @@ function QuickNote(props: any) {
     };
 
     return (
-        <div
-            ref={cardRef}
-            style={style}
-            className={`card ${selectedNodes?.includes(note._id) ? "selected" : ""} ${note.color || 'bg-yellow-50'}`}
-            key={note._id}
-            onClick={() => onQNoteClick(note._id)}
+        <div 
+            className="transform transition-transform hover:scale-105"
+            style={{ 
+                transform: `rotate(${getRandomRotation()}deg)`,
+                transformOrigin: 'center center'
+            }}
         >
-            <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium">{note.title || "No title"}</h3>
-                <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon" className="hover:bg-yellow-200" onClick={(e) => {e.stopPropagation(); onEditNote(note);}}>
-                        <FilePenIcon className="w-4 h-4"/>
-                        <span className="sr-only">Edit</span>
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="hover:bg-yellow-200"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onArchiveNote(note._id);
-                        }}
-                    >
-                        <TrashIcon className="w-4 h-4"/>
-                        <span className="sr-only">Delete</span>
-                    </Button>
+            <div
+                ref={cardRef}
+                style={style}
+                className={`card ${selectedNodes?.includes(note._id) ? "selected" : ""} ${note.color || 'bg-yellow-50'}`}
+                key={note._id}
+                onClick={() => onQNoteClick(note._id)}
+            >
+                <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-medium">{note.title || "No title"}</h3>
+                    <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="icon" className="hover:bg-yellow-200" onClick={(e) => {e.stopPropagation(); onEditNote(note);}}>
+                            <FilePenIcon className="w-4 h-4"/>
+                            <span className="sr-only">Edit</span>
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="hover:bg-yellow-200"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onArchiveNote(note._id);
+                            }}
+                        >
+                            <TrashIcon className="w-4 h-4"/>
+                            <span className="sr-only">Delete</span>
+                        </Button>
+                    </div>
                 </div>
+                {note.text}
             </div>
-            {note.text}
         </div>
     );
 }
