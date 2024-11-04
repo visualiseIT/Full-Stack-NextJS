@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {Button} from "@/components/ui/button";
+import {Id} from "@/convex/_generated/dataModel";
 
 interface QuickNoteProps {
     note: {
@@ -42,7 +43,7 @@ const QuickNote: React.FC<QuickNoteProps> = ({ note, index, columnCount, selecte
     const getAlternatingRotation = () => {
         const rowIndex = Math.floor(index / columnCount);
         const colIndex = index % columnCount;
-        
+
         // If even number of columns, alternate the starting direction for each row
         if (columnCount % 2 === 0) {
             // For even-numbered rows, start with right rotation
@@ -62,9 +63,9 @@ const QuickNote: React.FC<QuickNoteProps> = ({ note, index, columnCount, selecte
     };
 
     return (
-        <div 
+        <div
             className="transform transition-transform hover:scale-105"
-            style={{ 
+            style={{
                 transform: `rotate(${getAlternatingRotation()}deg)`,
                 transformOrigin: 'center center'
             }}
