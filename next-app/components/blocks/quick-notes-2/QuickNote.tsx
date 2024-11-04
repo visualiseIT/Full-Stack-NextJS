@@ -33,6 +33,9 @@ const QuickNote: React.FC<QuickNoteProps> = ({
     const cardRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // Reset animation state when column count changes
+        setAnimate(false);
+        
         // Delay the animation start slightly to ensure the initial state is rendered
         const animationTimer = setTimeout(() => setAnimate(true), 50);
 
@@ -48,7 +51,7 @@ const QuickNote: React.FC<QuickNoteProps> = ({
             clearTimeout(animationTimer);
             clearTimeout(transitionTimer);
         };
-    }, []);
+    }, [columnCount]);
 
     const getAlternatingRotation = () => {
         const rowIndex = Math.floor(index / columnCount);
