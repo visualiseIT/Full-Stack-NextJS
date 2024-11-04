@@ -3,6 +3,7 @@
 import Image from "next/image";
 import WelcomePage from "@/components/WelcomePage";
 import QuickNotes from "@/components/blocks/quick-notes-1/QuickNotes";
+import HomePage from "@/components/HomePage";
 import { useUser } from "@clerk/nextjs";
 
 export default function Home() {
@@ -38,7 +39,7 @@ export default function Home() {
 
 
           {isSignedIn ? (
-              <QuickNotes />
+              <HomePage />
           ) : (
               <WelcomePage />
           )}
