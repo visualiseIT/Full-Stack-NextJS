@@ -6,8 +6,14 @@
 
 
 ![quick-notes_thumb.png](quick-notes_thumb.png)
+![Screenshot_dark_mode.png](Screenshot_dark_mode.png)
 ![Screenshot.png](Screenshot.png)
 
+
+## !! N.B. This repo is a work in progress.. 
+### ## This message will be removed when all features are checked in) 
+
+### Steps to re-create project:
 
 Built with `create-next-app`
 
