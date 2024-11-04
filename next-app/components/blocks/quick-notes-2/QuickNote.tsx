@@ -1,14 +1,21 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {Button} from "@/components/ui/button";
 
-const getRandomRotation = () => {
-    // Random rotation between -3 and 3 degrees
-    return Math.random() * 6 - 3;
-};
+interface QuickNoteProps {
+    note: {
+        _id: Id<"notes">;
+        title: string;
+        text: string;
+        color?: string;
+    };
+    index: number;
+    selectedNodes: Id<"notes">[];
+    onQNoteClick: (noteId: Id<"notes">) => void;
+    onEditNote: (note: any) => void;
+    onArchiveNote: (noteId: Id<"notes">) => void;
+}
 
-function QuickNote(props: any) {
-
-    const {note, selectedNodes, onQNoteClick, onEditNote, onArchiveNote} = props;
+const QuickNote: React.FC<QuickNoteProps> = ({ note, index, selectedNodes, onQNoteClick, onEditNote, onArchiveNote }) => {
 
     const [animate, setAnimate] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
@@ -31,6 +38,11 @@ function QuickNote(props: any) {
         };
     }, []);
 
+    const getAlternatingRotation = () => {
+        // Alternate between -2 degrees (left) and 2 degrees (right)
+        return index % 2 === 0 ? -2 : 2;
+    };
+
     const style = {
         transform: animate ? 'translate(0, 0) rotateY(0deg) rotateX(0deg) scale(1)' : `translate(${Math.random() * 100 - 50}vw, ${Math.random() * 100 - 50}vh) rotateY(${Math.random() * 720 - 360}deg) rotateX(${Math.random() * 720 - 360}deg) scale(0.1)`,
         opacity: animate ? 1 : 0,
@@ -41,7 +53,7 @@ function QuickNote(props: any) {
         <div 
             className="transform transition-transform hover:scale-105"
             style={{ 
-                transform: `rotate(${getRandomRotation()}deg)`,
+                transform: `rotate(${getAlternatingRotation()}deg)`,
                 transformOrigin: 'center center'
             }}
         >
