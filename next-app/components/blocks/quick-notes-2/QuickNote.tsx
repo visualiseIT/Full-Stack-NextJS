@@ -5,19 +5,29 @@ import {Id} from "@/convex/_generated/dataModel";
 interface QuickNoteProps {
     note: {
         _id: Id<"notes">;
-        title: string;
+        title?: string;
         text: string;
         color?: string;
-    };
-    index: number;
-    columnCount: number;
-    selectedNodes: Id<"notes">[];
-    onQNoteClick: (noteId: Id<"notes">) => void;
-    onEditNote: (note: any) => void;
-    onArchiveNote: (noteId: Id<"notes">) => void;
+    },
+    index: number,
+    columnCount: number,
+    selectedNodes: Id<"notes">[],
+    onQNoteClick: (noteId: Id<"notes">) => void,
+    onEditNote: (note: any) => void,
+    onArchiveNote: (noteId: Id<"notes">) => void,
+    key?: any
 }
 
-const QuickNote: React.FC<QuickNoteProps> = ({ note, index, columnCount, selectedNodes, onQNoteClick, onEditNote, onArchiveNote }) => {
+const QuickNote: React.FC<QuickNoteProps> = ({
+                                                 note,
+                                                 index,
+                                                 columnCount,
+                                                 selectedNodes,
+                                                 onQNoteClick,
+                                                 onEditNote,
+                                                 onArchiveNote,
+                                                 key
+                                             }) => {
 
     const [animate, setAnimate] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
@@ -80,7 +90,10 @@ const QuickNote: React.FC<QuickNoteProps> = ({ note, index, columnCount, selecte
                 <div className="flex items-center justify-between">
                     <h3 className="text-lg font-medium">{note.title || "No title"}</h3>
                     <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="icon" className="hover:bg-yellow-200" onClick={(e) => {e.stopPropagation(); onEditNote(note);}}>
+                        <Button variant="ghost" size="icon" className="hover:bg-yellow-200" onClick={(e) => {
+                            e.stopPropagation();
+                            onEditNote(note);
+                        }}>
                             <FilePenIcon className="w-4 h-4"/>
                             <span className="sr-only">Edit</span>
                         </Button>

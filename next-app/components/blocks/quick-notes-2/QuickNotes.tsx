@@ -10,7 +10,7 @@ import {TrashIcon} from "lucide-react";
 
 interface Note {
     _id: Id<"notes">;
-    title: string;
+    title?: string;
     text: string;
 }
 
@@ -74,7 +74,7 @@ function QuickNotes() {
 
     const handleEditNote = (note: Note) => {
         setEditingNoteId(note._id);
-        setPostTitle(note.title);
+        setPostTitle(note.title ?? 'QuickNote');
         setPostContent(note.text);
     }
 
