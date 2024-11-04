@@ -152,7 +152,7 @@ function QuickNotes() {
                 </div>
 
                 <button
-                    className="fixed bottom-4 right-4 bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg"
+                    className="fixed bottom-4 left-4 bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg"
                     onClick={() => setShowArchivedNotes(true)}
                 >
                     <TrashIcon className="w-6 h-6" />
@@ -161,7 +161,7 @@ function QuickNotes() {
 
                 {!showNoteCreator && (
                     <button
-                        className="fixed top-20 left-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-2xl"
+                        className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-2xl"
                         onClick={() => setShowNoteCreator(true)}
                     >
                         +
