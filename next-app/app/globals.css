@@ -55,8 +55,9 @@ body {
   /*left:0;*/
   /*right:0;*/
 
-  @apply max-w-sm rounded overflow-hidden shadow-lg p-4 h-40 
+  @apply max-w-sm rounded overflow-hidden shadow-lg p-4 h-40 dark:shadow-slate-700 dark:shadow-md;
   /* bg-amber-100 */
+
 
 }
 .card:hover {
@@ -64,11 +65,11 @@ body {
   transform: scale(1.1) !important;
   z-index: 1000;
 
-  @apply bg-amber-300
+  @apply bg-amber-300 dark:bg-amber-700
 
 }
 .card.selected{
-  @apply bg-amber-200
+  @apply bg-amber-200 dark:bg-amber-800
 }
 @layer base {
   :root {
@@ -134,4 +135,40 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/*dark mode styles for quick-notes */
+
+.dark {
+  @apply bg-black text-white;
+}
+
+.dark .bg-yellow-50 {
+  @apply bg-slate-800 text-slate-100;
+}
+
+.dark .bg-yellow-100 {
+  @apply bg-slate-800 text-slate-100;
+}
+
+.dark .bg-green-100 {
+  @apply bg-emerald-900 text-emerald-100;
+}
+
+.dark .bg-blue-100 {
+  @apply bg-blue-900 text-blue-100;
+}
+
+.dark .bg-pink-100 {
+  @apply bg-pink-900 text-pink-100;
+}
+
+.dark .bg-purple-100 {
+  @apply bg-purple-900 text-purple-100;
+}
+
+/*fix for text in light mode when user prefers dark is active */
+
+.light .quick-notes {
+  @apply bg-white text-black;
 }

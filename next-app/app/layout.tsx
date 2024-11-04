@@ -3,6 +3,7 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import {ConvexClerkProvider} from "@/components/providers/ConvexClerkProvider";
 import {Navbar} from "@/app/navbar";
+import {ThemeProvider} from "next-themes";
 // import {SignInButton, UserButton} from "@clerk/clerk-react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,13 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-    <body className={inter.className}>
-    <ConvexClerkProvider>
-        <Navbar/>
-        {children}
-    </ConvexClerkProvider>
-    </body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ConvexClerkProvider>
+            <Navbar/>
+            {children}
+          </ConvexClerkProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
