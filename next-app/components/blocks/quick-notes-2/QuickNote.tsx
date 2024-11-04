@@ -31,27 +31,40 @@ const QuickNote: React.FC<QuickNoteProps> = ({
 
     const [animate, setAnimate] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
+    const prevPositionRef = useRef({ row: 0, col: 0 });
+
+    const getCurrentPosition = () => ({
+        row: Math.floor(index / columnCount),
+        col: index % columnCount
+    });
 
     useEffect(() => {
-        // Reset animation state when column count changes
-        setAnimate(false);
+        const currentPosition = getCurrentPosition();
+        const positionChanged = 
+            currentPosition.row !== prevPositionRef.current.row || 
+            currentPosition.col !== prevPositionRef.current.col;
+
+        if (positionChanged) {
+            // Only animate if position changed
+            setAnimate(false);
+            const delay = (currentPosition.row + currentPosition.col) * 50; // Stagger effect
+            const animationTimer = setTimeout(() => setAnimate(true), 50 + delay);
+            
+            const transitionTimer = setTimeout(() => {
+                if (cardRef.current) {
+                    cardRef.current.style.transition = 'transform 0.3s ease-out, opacity 0.5s ease-in, scale 0.5s ease-in';
+                }
+            }, 1050 + delay);
+
+            return () => {
+                clearTimeout(animationTimer);
+                clearTimeout(transitionTimer);
+            };
+        }
         
-        // Delay the animation start slightly to ensure the initial state is rendered
-        const animationTimer = setTimeout(() => setAnimate(true), 50);
-
-        // Set up the transition change after the animation
-        const transitionTimer = setTimeout(() => {
-            if (cardRef.current) {
-                cardRef.current.style.transition = 'transform 0.3s ease-out, opacity 0.5s ease-in, scale 0.5s ease-in';
-                // cardRef.current.style.transitionDuration = '300ms, 500ms, 500ms, 350ms';
-            }
-        }, 1050); // 1000ms for animation + 50ms initial delay
-
-        return () => {
-            clearTimeout(animationTimer);
-            clearTimeout(transitionTimer);
-        };
-    }, [columnCount]);
+        // Update previous position
+        prevPositionRef.current = currentPosition;
+    }, [columnCount, index]);
 
     const getAlternatingRotation = () => {
         const rowIndex = Math.floor(index / columnCount);
