@@ -14,7 +14,8 @@ export default function Home() {
           className="flex min-h-screen flex-col items-center justify-between p-24 pt-10"
           style={{
               backgroundImage: `url('/replicate-notes-air.jpg')`,
-              backgroundSize: "auto 100%",
+              // backgroundSize: "auto 100%",
+              backgroundSize: "cover",
               backgroundPosition: "center center",
           }}
       >
